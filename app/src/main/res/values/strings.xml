@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LIBG Mobile</string>
+    <string name="mat_khau">Mật Khẩu</string>
+    <string name="dang_nhap">Đăng nhập</string>
 </resources>
