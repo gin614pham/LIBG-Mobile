@@ -2,4 +2,6 @@
     <string name="app_name">LIBG Mobile</string>
     <string name="mat_khau">Mật Khẩu</string>
     <string name="dang_nhap">Đăng nhập</string>
+    <string name="dang_nhap_thanh_cong">Đăng nhập thành công</string>
+    <string name="dang_nhap_that_bai">Đăng nhập thất bại</string>
 </resources>
