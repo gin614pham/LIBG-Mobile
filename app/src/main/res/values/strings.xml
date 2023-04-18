@@ -4,4 +4,12 @@
     <string name="dang_nhap">Đăng nhập</string>
     <string name="dang_nhap_thanh_cong">Đăng nhập thành công</string>
     <string name="dang_nhap_that_bai">Đăng nhập thất bại</string>
+    <string name="email_hoac_mat_khau_khong_duoc_de_trong">Email hoặc mật khẩu không được để trống</string>
+    <string name="ten">Tên</string>
+    <string name="ma_sv">Mã sinh viên</string>
+    <string name="email">Email</string>
+    <string name="sdt">Số điện thoại</string>
+    <string name="gioi_tinh">Giới tính</string>
+    <string name="forgot_password">Quên mật Khẩu?</string>
+    <string name="doi_mat_khau">Đổi mật khẩu</string>
 </resources>
