@@ -20,6 +20,8 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputEmail"
+            app:startIconDrawable="@drawable/baseline_email_24"
+            app:endIconMode="clear_text"
             style="@style/parent"
             android:layout_marginTop="@dimen/loginViewsMargin">
             <EditText
@@ -33,6 +35,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputPassword"
             style="@style/parent"
+            app:startIconDrawable="@drawable/baseline_key_24"
+            app:endIconMode="password_toggle"
             android:layout_marginTop="@dimen/loginViewsMargin">
             <EditText
                 android:id="@+id/etPasswordLogin"

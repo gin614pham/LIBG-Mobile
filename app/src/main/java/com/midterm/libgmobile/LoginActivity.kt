@@ -56,9 +56,10 @@ class LoginActivity : AppCompatActivity() {
                         else {
                             Toast.makeText(
                                 this@LoginActivity,
-                                getString(R.string.dang_nhap_that_bai),
+                                getString(R.string.email_or_password_is_wrong),
                                 Toast.LENGTH_SHORT
                             ).show()
+                            clearPassword()
                         }
                     }
                 } else {
@@ -92,6 +93,11 @@ class LoginActivity : AppCompatActivity() {
             putExtra("isLogin", true)
         }
         startActivity(intent)
+    }
+    // fun clear password
+    fun clearPassword(){
+        val editText = findViewById<EditText>(R.id.etPasswordLogin)
+        editText.setText("")
     }
 
 

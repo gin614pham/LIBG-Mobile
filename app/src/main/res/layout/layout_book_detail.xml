@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+        <ImageView
+            android:id="@+id/ivBookDetail"
+            style="@style/parent"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/toi_tu_hoc_top_sach_hay_cho_hoc_sinh_sinh_vien_69ca39f78c" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/parent"
+            android:hint="@string/name_book"
+            app:startIconDrawable="@drawable/baseline_book_24"
+            android:paddingTop="8dp"
+            >
+
+            <EditText
+                android:id="@+id/etBookNameDetail"
+                style="@style/parent"
+                android:layout_weight="1"
+                android:ems="10"
+                android:focusable="false"
+                android:inputType="text"
+                android:text="Name"
+                android:textSize="24sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/parent"
+            android:hint="@string/author"
+            app:startIconDrawable="@drawable/round_contacts_24"
+            android:paddingTop="8dp"
+            >
+
+            <EditText
+                android:id="@+id/etBookAuthorDetail"
+                style="@style/parent"
+                android:layout_weight="1"
+                android:ems="10"
+                android:focusable="false"
+                android:inputType="text"
+                android:text="Name"
+                android:textSize="24sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/parent"
+            android:hint="@string/description"
+            app:startIconDrawable="@drawable/twotone_description_24"
+            android:paddingTop="8dp"
+            >
+
+            <EditText
+                android:id="@+id/etBookDescriptionDetail"
+                style="@style/parent"
+                android:layout_weight="1"
+                android:ems="10"
+                android:focusable="false"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:text="name"
+                android:textSize="24sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/parent"
+            android:hint="@string/price"
+            app:startIconDrawable="@drawable/round_attach_money_24"
+            android:paddingTop="8dp"
+            >
+
+            <EditText
+                android:id="@+id/etBookPriceDetail"
+                style="@style/parent"
+                android:layout_weight="1"
+                android:ems="10"
+                android:focusable="false"
+                android:inputType="text"
+                android:text="Name"
+                android:textSize="24sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/parent"
+            android:hint="@string/rating"
+            app:startIconDrawable="@drawable/twotone_star_rate_24"
+            android:paddingTop="8dp"
+            >
+
+            <EditText
+                android:id="@+id/etBookRatingDetail"
+                style="@style/parent"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="text"
+                android:text="Name"
+                android:textSize="24sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
