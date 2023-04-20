@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
+        putUserToAccountFragment(accountFragment, user)
         // set fragment home
         replaceFragment(homeFragment)
         // button navigation view
@@ -35,7 +36,8 @@ class MainActivity : AppCompatActivity() {
                     replaceFragment(homeFragment)
                 }
                 R.id.navigation_account -> {
-                    putUserToIntent(AccountFragment::class.java)
+                    // put user to fragment account
+
                     // set fragment account
                     replaceFragment(accountFragment)
                 }
@@ -53,25 +55,17 @@ class MainActivity : AppCompatActivity() {
         val name = intent.getStringExtra("name")
         val phone = intent.getStringExtra("phone")
         val gender = intent.getStringExtra("gender")
-        val avatar = intent.getStringExtra("avatar")
+        val avatar = intent.getIntExtra("avatar", 0)
         val isLogin = intent.getBooleanExtra("isLogin", false)
         user = UserModel(id, email, password, name, phone, gender, avatar, isLogin)
     }
-    // fun put user to intent
-    private fun putUserToIntent(c : Class<*>) {
-        val intent = Intent(this, c).apply {
-            putExtra("id", user.id)
-            putExtra("email", user.email)
-            putExtra("password", user.password)
-            putExtra("name", user.name)
-            putExtra("phone", user.phone)
-            putExtra("gender", user.gender)
-            putExtra("avatar", user.avatar)
-            putExtra("isLogin", user.isLogin)
-        }
-        startActivity(intent)
-    }
 
+    // fun put user to fragment account
+    private fun putUserToAccountFragment(fragment: Fragment, user: UserModel) {
+        val bundle = Bundle()
+        bundle.putSerializable("user", user)
+        fragment.arguments = bundle
+    }
     // fun replace fragment
     private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
