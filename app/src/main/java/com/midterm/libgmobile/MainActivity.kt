@@ -2,6 +2,7 @@ package com.midterm.libgmobile
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.midterm.libgmobile.databinding.ActivityMainBinding
@@ -25,9 +26,9 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
-        putUserToAccountFragment(accountFragment, user)
         // set fragment home
         replaceFragment(homeFragment)
+
         // button navigation view
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
@@ -37,9 +38,11 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navigation_account -> {
                     // put user to fragment account
-
                     // set fragment account
+                    putUserToAccountFragment(accountFragment, user)
+                    setOnClickListener1()
                     replaceFragment(accountFragment)
+
                 }
             }
             true
@@ -72,6 +75,17 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frame_layout, fragment)
         fragmentTransaction.commit()
+    }
+
+    private fun setOnClickListener1(){
+        accountFragment.view?.setOnClickListener {
+            val intent = Intent(this, AccountActivity::class.java)
+            val bundle = Bundle()
+            bundle.putSerializable("user", user)
+            intent.putExtras(bundle)
+            startActivity(intent)
+
+        }
     }
 
 

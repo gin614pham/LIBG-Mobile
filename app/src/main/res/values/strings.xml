@@ -22,4 +22,5 @@
     <string name="description">Mô tả</string>
     <string name="price">Giá</string>
     <string name="rating">Đánh giá</string>
+    <string name="book_card_detail_transition_name">book card detail transition name</string>
 </resources>

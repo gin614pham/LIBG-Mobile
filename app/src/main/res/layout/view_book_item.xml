@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="194dp"
             android:scaleType="fitCenter"
+            android:transitionName="book_detail"
             tools:srcCompat="@drawable/toi_tu_hoc_top_sach_hay_cho_hoc_sinh_sinh_vien_69ca39f78c" />
 
         <LinearLayout

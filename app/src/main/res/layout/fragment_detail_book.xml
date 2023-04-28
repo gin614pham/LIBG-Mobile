@@ -4,11 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".DetailBookFragment">
 
     <ScrollView 
         android:layout_width="match_parent"
-         android:layout_height="match_parent">
-        <include layout="@layout/layout_book_detail"/>
+         android:layout_height="match_parent"
+
+        >
+        <include layout="@layout/layout_book_detail"
+            />
     </ScrollView>
 </RelativeLayout>

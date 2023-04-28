@@ -1,10 +1,15 @@
 package com.midterm.libgmobile
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.google.android.material.transition.platform.MaterialContainerTransform
+import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import com.midterm.libgmobile.model.BookModel
 
 /**
@@ -16,37 +21,27 @@ import com.midterm.libgmobile.model.BookModel
 class DetailBookFragment : Fragment(R.layout.fragment_detail_book) {
     private var book: BookModel? = null
 
-//    override fun onCreateView(
-//        inflater: LayoutInflater,
-//        container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        val view = inflater.inflate(R.layout.fragment_detail_book, container, false)
-//        view.findViewById<EditText>(R.id.etBookNameDetail).setText(book?.name)
-//        view.findViewById<EditText>(R.id.etBookAuthorDetail).setText(book?.author)
-//        view.findViewById<EditText>(R.id.etBookDescriptionDetail).setText(book?.description)
-//        view.findViewById<EditText>(R.id.etBookPriceDetail).setText(book?.price)
-//        view.findViewById<EditText>(R.id.etBookRatingDetail).setText(book?.rating)
-//        view.findViewById<ImageView>(R.id.ivBookDetail).setImageResource(book?.image!!)
-//        return view
-//    }
-
+    @SuppressLint("ResourceAsColor")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         if (arguments != null) {
             book = arguments?.getSerializable("book") as BookModel
-            view.findViewById<EditText>(R.id.etBookNameDetail).setText(book?.name)
+            view.findViewById<TextView>(R.id.etBookNameDetail).text = book?.name
             view.findViewById<EditText>(R.id.etBookAuthorDetail).setText(book?.author)
             view.findViewById<EditText>(R.id.etBookDescriptionDetail).setText(book?.description)
             view.findViewById<EditText>(R.id.etBookPriceDetail).setText(book?.price)
             view.findViewById<EditText>(R.id.etBookRatingDetail).setText(book?.rating)
             view.findViewById<ImageView>(R.id.ivBookDetail).setImageResource(book?.image!!)
         }
+        // set OnClickListener for Button Back to do back to home
+        view.findViewById<Button>(R.id.btnBackDetail).setOnClickListener {
+            activity?.onBackPressed()
+        }
     }
-//
-//    // fun set book to view
-//    private fun setBook(book: BookModel) {
-//        findViewById<TextView>(R.id.tv_name).text = book.name
-//    }
+
 
 }

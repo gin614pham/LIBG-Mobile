@@ -18,7 +18,7 @@ class AccountActivity : AppCompatActivity() {
         setContentView(R.layout.activity_account)
         binding = ActivityAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        getUserFromIntent()
+        getUser()
         checkLogin()
         setData()
         val text = getString(R.string.doi_mat_khau)
@@ -34,17 +34,10 @@ class AccountActivity : AppCompatActivity() {
 
     }
 
-    private fun getUserFromIntent() {
-        val intent = intent
-        val id = intent.getStringExtra("id")
-        val email = intent.getStringExtra("email")
-        val password = intent.getStringExtra("password")
-        val name = intent.getStringExtra("name")
-        val phone = intent.getStringExtra("phone")
-        val gender = intent.getStringExtra("gender")
-        val avatar = intent.getStringExtra("avatar")
-        val isLogin = intent.getBooleanExtra("isLogin", false)
-        user = UserModel(id, email, password, name, phone, gender, avatar, isLogin)
+    // get data from bundle
+    private fun getUser(){
+        val bundle = intent.extras
+        user = bundle?.getSerializable("user") as UserModel
     }
 
     // fun check login
