@@ -40,7 +40,6 @@ class MainActivity : AppCompatActivity() {
                     // put user to fragment account
                     // set fragment account
                     putUserToAccountFragment(accountFragment, user)
-                    setOnClickListener1()
                     replaceFragment(accountFragment)
 
                 }
@@ -75,17 +74,6 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frame_layout, fragment)
         fragmentTransaction.commit()
-    }
-
-    private fun setOnClickListener1(){
-        accountFragment.view?.setOnClickListener {
-            val intent = Intent(this, AccountActivity::class.java)
-            val bundle = Bundle()
-            bundle.putSerializable("user", user)
-            intent.putExtras(bundle)
-            startActivity(intent)
-
-        }
     }
 
 

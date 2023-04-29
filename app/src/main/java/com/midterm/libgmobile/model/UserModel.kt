@@ -12,4 +12,7 @@ class UserModel(
     var avatar: Int ?= 0,
     var isLogin: Boolean ?= false
 ): Serializable {
+    fun logout() {
+        isLogin = false
+    }
 }

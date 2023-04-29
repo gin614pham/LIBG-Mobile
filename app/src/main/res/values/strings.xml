@@ -24,4 +24,10 @@
     <string name="rating">Đánh giá</string>
     <string name="book_card_detail_transition_name">book card detail transition name</string>
     <string name="info_user">Thông tin tài khoản</string>
+    <string name="saved_list">Danh sách đã lưu</string>
+    <string name="history_book">Lịch sử mượn sách</string>
+    <string name="feedback">Phản hồi</string>
+    <string name="help">Trợ giúp</string>
+    <string name="about">Về ứng dụng</string>
+    <string name="back">back</string>
 </resources>

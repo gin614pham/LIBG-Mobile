@@ -36,8 +36,8 @@ class AccountActivity : AppCompatActivity() {
 
     // get data from bundle
     private fun getUser(){
-        val bundle = intent.extras
-        user = bundle?.getSerializable("user") as UserModel
+        val intent = intent
+        user = intent.getSerializableExtra("user") as UserModel
     }
 
     // fun check login

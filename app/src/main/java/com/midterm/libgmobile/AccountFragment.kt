@@ -1,14 +1,12 @@
 package com.midterm.libgmobile
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.viewbinding.ViewBindings
+import androidx.cardview.widget.CardView
 import com.midterm.libgmobile.model.UserModel
 
 
@@ -24,10 +22,19 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
         super.onViewCreated(view, savedInstanceState)
         // get data from bundle
         if (arguments != null) {
-            val user = arguments?.getSerializable("user") as UserModel
+            user = arguments?.getSerializable("user") as UserModel
         }
+        val name : TextView = view.findViewById(R.id.tvNameUser)
+        name.text = user.name
+        setOnClickItem()
     }
 
-
-
+    private fun setOnClickItem(){
+        val btnInfoAccount: CardView = view?.findViewById(R.id.btnInfoUser)!!
+        btnInfoAccount.setOnClickListener {
+            val intent = Intent(activity, AccountActivity::class.java)
+            intent.putExtra("user", user)
+            startActivity(intent)
+        }
+    }
 }
