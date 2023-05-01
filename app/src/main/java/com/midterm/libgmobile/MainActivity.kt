@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     private var user = UserModel()
     private var homeFragment = HomeFragment()
     private var accountFragment = AccountFragment()
+    private var searchFragment = SearchFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +36,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home -> {
                     // set fragment home
                     replaceFragment(homeFragment)
+                }
+                R.id.navigation_search -> {
+                    replaceFragment(searchFragment)
                 }
                 R.id.navigation_account -> {
                     // put user to fragment account
