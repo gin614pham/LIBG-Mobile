@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 
 
 /**
@@ -16,6 +17,9 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val searchManager = activity?.getSystemService(android.content.Context.SEARCH_SERVICE) as android.app.SearchManager
+        val searchableInfo = searchManager.getSearchableInfo(activity?.componentName)
+        view.findViewById<SearchView>(R.id.search_view).setSearchableInfo(searchableInfo)
     }
 
 }

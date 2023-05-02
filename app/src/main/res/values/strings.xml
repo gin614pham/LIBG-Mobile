@@ -31,4 +31,5 @@
     <string name="about">Về ứng dụng</string>
     <string name="back">back</string>
     <string name="search">Tìm kiếm</string>
+    <string name="search_book">Tìm kiếm sách</string>
 </resources>
