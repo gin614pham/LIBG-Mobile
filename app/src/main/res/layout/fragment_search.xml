@@ -14,7 +14,6 @@
         android:iconifiedByDefault="false"
         android:queryBackground="@null"
         android:background="@drawable/shapebgsearch"
-        android:queryHint="@string/search_book"
         android:submitBackground="@null"
         />
 

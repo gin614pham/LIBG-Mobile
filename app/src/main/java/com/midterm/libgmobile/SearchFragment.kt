@@ -19,7 +19,17 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         super.onViewCreated(view, savedInstanceState)
         val searchManager = activity?.getSystemService(android.content.Context.SEARCH_SERVICE) as android.app.SearchManager
         val searchableInfo = searchManager.getSearchableInfo(activity?.componentName)
-        view.findViewById<SearchView>(R.id.search_view).setSearchableInfo(searchableInfo)
+        val search = view.findViewById<SearchView>(R.id.search_view)
+        search.setSearchableInfo(searchableInfo)
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+        })
     }
 
 }
