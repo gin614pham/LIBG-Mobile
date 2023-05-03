@@ -32,4 +32,6 @@
     <string name="back">back</string>
     <string name="search">Tìm kiếm</string>
     <string name="search_book">Tìm kiếm sách</string>
+    <string name="comment">Bình luận</string>
+    <string name="no_comment">Chưa có bình luận</string>
 </resources>
