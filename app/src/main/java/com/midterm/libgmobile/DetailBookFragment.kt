@@ -71,7 +71,7 @@ class DetailBookFragment : Fragment(R.layout.fragment_detail_book) {
         cvComment = view.findViewById(R.id.tvCommentDetail)
         tvNoComment = view.findViewById(R.id.tvNoComment)
         cvLayout = view.findViewById(R.id.cvlayout)
-        scrollView = view.findViewById(R.id.scrollView)
+        scrollView = view.findViewById(R.id.scrollview)
         cvLayout?.layoutTransition?.enableTransitionType(LayoutTransition.CHANGING)
 
         // set adapter for recyclerView
@@ -84,7 +84,7 @@ class DetailBookFragment : Fragment(R.layout.fragment_detail_book) {
         cvComment?.setOnClickListener {
             // set Transition for CardView
             val transition = AutoTransition()
-            transition.duration = 1000
+            transition.duration = 500
             TransitionManager.beginDelayedTransition(cvLayout, transition)
             if(rvComment?.visibility == View.GONE && tvNoComment?.visibility == View.GONE){
                 if (listComment != null) {
