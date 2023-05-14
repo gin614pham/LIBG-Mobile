@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,56 +7,8 @@
     android:orientation="vertical"
     tools:context=".AccountActivity">
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="149dp"
-        android:layout_height="142dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        app:srcCompat="@drawable/user" />
-
-    <TextView
-        android:id="@+id/tvName"
+    <include
+        layout="@layout/layout_user_info"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ten"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/tvId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="MaSV"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/tvGender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="GioiTinh"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/tvPhone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SDT"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/tvEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Email"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/tvChangePassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DoiMatKhau"
-        android:textAllCaps="false"
-        android:textSize="20sp"
-        android:textStyle="italic"
-        />
-</LinearLayout>
+        android:layout_height="match_parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

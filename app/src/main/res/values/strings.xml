@@ -34,4 +34,7 @@
     <string name="search_book">Tìm kiếm sách</string>
     <string name="comment">Bình luận</string>
     <string name="no_comment">Chưa có bình luận</string>
+    <string name="name">Tên</string>
+    <string name="phone_number">Số điện thoại</string>
+    <string name="logout">Đăng xuất\n</string>
 </resources>
