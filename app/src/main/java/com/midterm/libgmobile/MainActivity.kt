@@ -2,6 +2,7 @@ package com.midterm.libgmobile
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.midterm.libgmobile.databinding.ActivityMainBinding
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         user.checkLogin(this)
         checkRole()
         // set fragment home
+        putUserToFragment(homeFragment, user)
         replaceFragment(homeFragment)
 
         // button navigation view
@@ -33,6 +35,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.navigation_home -> {
                     // set fragment home
+                    putUserToFragment(homeFragment, user)
                     replaceFragment(homeFragment)
                 }
                 R.id.navigation_search -> {
@@ -41,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_account -> {
                     // put user to fragment account
                     // set fragment account
-                    putUserToAccountFragment(accountFragment, user)
+                    putUserToFragment(accountFragment, user)
                     replaceFragment(accountFragment)
 
                 }
@@ -72,7 +75,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // fun put user to fragment account
-    private fun putUserToAccountFragment(fragment: Fragment, user: UserModel) {
+    private fun putUserToFragment(fragment: Fragment, user: UserModel) {
         val bundle = Bundle()
         bundle.putSerializable("user", user)
         fragment.arguments = bundle
@@ -92,6 +95,10 @@ class MainActivity : AppCompatActivity() {
             binding.fabAdminAddBook.setOnClickListener {
                 replaceFragment(addBookFragment)
             }
+//            findViewById<Button>(R.id.btnMenuDetail).visibility = View.VISIBLE
+        } else {
+            binding.fabAdminAddBook.visibility = View.GONE
+//            findViewById<Button>(R.id.btnMenuDetail).visibility = View.GONE
         }
 
     }

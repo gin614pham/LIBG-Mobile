@@ -3,12 +3,10 @@ package com.midterm.libgmobile.model
 import android.app.Activity
 import android.net.Uri
 import android.widget.Toast
-import androidx.databinding.adapters.NumberPickerBindingAdapter.setValue
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storageMetadata
-import com.midterm.libgmobile.MainActivity
 import java.io.Serializable
 
 class BookModel(
@@ -20,16 +18,20 @@ class BookModel(
     var price: String,
     var rating: String,
 ) : Serializable {
-    private lateinit var database : DatabaseReference
-    private lateinit var storage : FirebaseStorage
+    @Transient
+    private var database: DatabaseReference? = null
+    @Transient
+    private var storage : FirebaseStorage? = null
 
     constructor(): this("", "", "", "", "", "", "")
 
     fun pushBook(activity: Activity) {
         database = FirebaseDatabase.getInstance().reference.child("books")
-        this.id = database.push().key.toString()
-        this.rating = "0"
-        database.child(this.id).setValue(this).addOnCompleteListener() {
+        if (this.id.isEmpty()) {
+            this.id = database!!.push().key.toString()
+        }
+        this.rating = this.rating.ifEmpty { "0" }
+        database!!.child(this.id).setValue(this).addOnCompleteListener() {
             Toast.makeText(
                 activity,
                 "Thêm sách thành công",
@@ -42,11 +44,12 @@ class BookModel(
                 Toast.LENGTH_SHORT
             ).show()
         }
+
     }
 
     fun  pushImage(uri: Uri) {
         storage = FirebaseStorage.getInstance()
-        val storageRef = storage.reference
+        val storageRef = storage!!.reference
         val metadata = storageMetadata {
             contentType = "image/jpeg|image/png|image/jpg"
         }
@@ -56,11 +59,25 @@ class BookModel(
                 updateImage(it.toString())
             }
         }
+
+
     }
 
     private fun updateImage(toString: String) {
         database = FirebaseDatabase.getInstance().reference.child("books").child(id)
-        database.child("image").setValue(toString)
+        database!!.child("image").setValue(toString)
         this.image = toString
+    }
+
+    fun deleteBook(activity: Activity) {
+        database = FirebaseDatabase.getInstance().reference.child("books").child(id)
+        database!!.removeValue().addOnSuccessListener {
+            Toast.makeText(
+                activity,
+                "Xoá sách thành công",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
     }
 }

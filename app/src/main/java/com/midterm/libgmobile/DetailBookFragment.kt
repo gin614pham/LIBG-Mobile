@@ -8,7 +8,6 @@ import android.transition.TransitionManager
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -19,6 +18,8 @@ import com.bumptech.glide.Glide
 import com.midterm.libgmobile.adapter.RvComment
 import com.midterm.libgmobile.model.BookModel
 import com.midterm.libgmobile.model.CommentModel
+import com.midterm.libgmobile.model.UserModel
+import com.midterm.libgmobile.service.DialogMenuBook
 
 /**
  * A simple [Fragment] subclass.
@@ -35,17 +36,29 @@ class DetailBookFragment : Fragment(R.layout.fragment_detail_book) {
     private var listComment: List<CommentModel>? = null
     private var cvLayout: CardView? = null
     private var scrollView: ScrollView? = null
+    private var userModel: UserModel = UserModel()
 
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
+    @SuppressLint("CutPasteId")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         if (arguments != null) {
             book = arguments?.getSerializable("book") as BookModel
+            userModel = arguments?.getSerializable("user") as UserModel
+            val menu = view.findViewById<Button>(R.id.btnMenuDetail)
+            if (userModel.role == "Admin") {
+                menu.visibility = View.VISIBLE
+                menu.setOnClickListener {
+                    showDialog()
+                }
+            } else {
+                menu.visibility = View.GONE
+            }
             view.findViewById<TextView>(R.id.etBookNameDetail).text = book?.name
             view.findViewById<EditText>(R.id.etBookAuthorDetail).setText(book?.author)
             view.findViewById<EditText>(R.id.etBookDescriptionDetail).setText(book?.description)
@@ -71,6 +84,47 @@ class DetailBookFragment : Fragment(R.layout.fragment_detail_book) {
 
         // set adapter for recyclerView
         setOnClickComment()
+    }
+
+    private fun showDialog() {
+        val dialog = DialogMenuBook()
+        val editListener = View.OnClickListener {
+            // push data to fragment AddBookFragment
+            val addBookFragment = AddBookFragment()
+            val bundle = Bundle()
+            bundle.putSerializable("book", book)
+            bundle.putSerializable("user", userModel)
+            addBookFragment.arguments = bundle
+
+            val fragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.setCustomAnimations(
+                android.R.anim.slide_in_left,
+                android.R.anim.slide_out_right
+            )
+            fragmentTransaction.replace(R.id.frame_layout, addBookFragment)
+            fragmentTransaction.addToBackStack(this.tag)
+            fragmentTransaction.commit()
+            dialog.dismiss()
+        }
+        val deleteListener = View.OnClickListener {
+            dialog.dismiss()
+            // create dialog for confirm delete
+            val builder = androidx.appcompat.app.AlertDialog.Builder(requireContext())
+            builder.setTitle(getString(R.string.delete_book))
+            builder.setMessage(getString(R.string.are_you_sure_you_want_to_delete_this_book)+"\n"+book?.name)
+            builder.setPositiveButton("Yes") { dialog, _ ->
+                dialog.dismiss()
+                book?.deleteBook(requireActivity())
+                activity?.onBackPressed()
+            }
+            builder.setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+            }
+            builder.show()
+        }
+        dialog.show(requireContext(), editListener, deleteListener)
+
     }
 
 

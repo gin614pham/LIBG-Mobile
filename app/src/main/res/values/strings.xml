@@ -37,15 +37,19 @@
     <string name="name">Tên</string>
     <string name="phone_number">Số điện thoại</string>
     <string name="logout">Đăng xuất\n</string>
-    <string name="mat_khau_that_bai">Đổi mật khẩu thật bại\n</string>
+    <string name="mat_khau_that_bai">Đổi mật khẩu thật bại</string>
     <string name="old_password">Mật khẩu hiện tại</string>
     <string name="new_password">Mật khẩu mới</string>
     <string name="confirm_password">Xác nhận lại mật khẩu</string>
     <string name="password_changed">Thay đổi mật khẩu thành công</string>
-    <string name="password_not_match">Mật khẩu mới không khớp\n</string>
-    <string name="old_password_not_match">Sai mật khẩu cũ\n</string>
-    <string name="phone_changed">Số điện thoại đã thay đổi\n</string>
+    <string name="password_not_match">Mật khẩu mới không khớp</string>
+    <string name="old_password_not_match">Sai mật khẩu cũ</string>
+    <string name="phone_changed">Số điện thoại đã thay đổi</string>
     <string name="phone_not_valible">Số điện thoại không hợp lệ</string>
     <string name="add_book">Thêm Sách</string>
     <string name="add">Thêm</string>
+    <string name="edit">Chỉnh sửa</string>
+    <string name="delete">Xoá</string>
+    <string name="are_you_sure_you_want_to_delete_this_book">"Bạn có chắc chắn muốn xoá Sách "</string>
+    <string name="delete_book">Xoá sách</string>
 </resources>

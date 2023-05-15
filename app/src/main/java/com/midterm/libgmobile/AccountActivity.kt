@@ -132,13 +132,6 @@ class AccountActivity : AppCompatActivity() {
         user = intent.getSerializableExtra("user") as UserModel
     }
 
-    // fun check login
-//    private fun checkLogin(){
-//        if (user.isLogin != true){
-//            val intent = Intent(this, LoginActivity::class.java)
-//            startActivity(intent)
-//        }
-//    }
     // fun set data to layout
     @SuppressLint("SetTextI18n")
     private fun setData(){
