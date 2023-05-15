@@ -27,10 +27,11 @@ data class UserModel(
     var phone: String ?= "",
     var gender: String ?= "",
     var avatar: String ?= "",
+    var role: String ?= "",
     var isLogin: Boolean ?= false
 ): Serializable {
     private lateinit var database : DatabaseReference
-    constructor(): this("", "", "", "", "", "", "", false)
+    constructor(): this("", "", "", "", "", "", "", "", false)
 
     fun login(activity: Activity, email: String, password: String) {
         database = FirebaseDatabase.getInstance().reference.child("users")
@@ -49,6 +50,7 @@ data class UserModel(
                                 this@UserModel.phone = user.phone
                                 this@UserModel.gender = user.gender
                                 this@UserModel.avatar = user.avatar
+                                this@UserModel.role = user.role
                             } else {
                                 Toast.makeText(
                                     activity,
@@ -129,6 +131,7 @@ data class UserModel(
         this.phone = ""
         this.gender = ""
         this.avatar = ""
+        this.role = ""
         activity.startActivity(Intent(activity, MainActivity::class.java))
     }
 

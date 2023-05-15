@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.midterm.libgmobile.R
 import com.midterm.libgmobile.model.BookModel
 
@@ -30,7 +31,7 @@ class RvBook(private var list : List<BookModel>, private var listener : RvBookIF
         holder.itemView.apply {
             holder.tvBookTitle.text = list[position].name
             holder.tvBookAuthor.text = list[position].author
-            holder.ivBook.setImageResource(list[position].image)
+            Glide.with(this).load(list[position].image).into(holder.ivBook)
         }
         holder.itemView.setOnClickListener {
             listener.onClick(position)

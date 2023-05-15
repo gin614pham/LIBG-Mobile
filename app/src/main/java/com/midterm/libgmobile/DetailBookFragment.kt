@@ -15,6 +15,7 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.midterm.libgmobile.adapter.RvComment
 import com.midterm.libgmobile.model.BookModel
 import com.midterm.libgmobile.model.CommentModel
@@ -50,7 +51,7 @@ class DetailBookFragment : Fragment(R.layout.fragment_detail_book) {
             view.findViewById<EditText>(R.id.etBookDescriptionDetail).setText(book?.description)
             view.findViewById<EditText>(R.id.etBookPriceDetail).setText(book?.price)
             view.findViewById<EditText>(R.id.etBookRatingDetail).setText(book?.rating)
-            view.findViewById<ImageView>(R.id.ivBookDetail).setImageResource(book?.image!!)
+            Glide.with(this).load(book?.image).into(view.findViewById(R.id.ivBookDetail))
         }
         // set OnClickListener for Button Back to do back to home
         view.findViewById<Button>(R.id.btnBackDetail).setOnClickListener {
@@ -86,7 +87,7 @@ class DetailBookFragment : Fragment(R.layout.fragment_detail_book) {
                     adapterComment = RvComment(listComment!!)
                     rvComment?.adapter = adapterComment
                     rvComment?.layoutManager =
-                        LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                        LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                     tvNoComment?.visibility = View.GONE
                     scrollView!!.post {
                         scrollView!!.fullScroll(View.FOCUS_DOWN)

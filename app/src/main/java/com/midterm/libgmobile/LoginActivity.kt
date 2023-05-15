@@ -51,6 +51,7 @@ class LoginActivity : AppCompatActivity() {
             putExtra("phone", user.phone)
             putExtra("gender", user.gender)
             putExtra("avatar", user.avatar)
+            putExtra("role", user.role)
             putExtra("isLogin", user.isLogin)
         }
         startActivity(intent)
