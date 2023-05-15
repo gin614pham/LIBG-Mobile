@@ -2,12 +2,11 @@ package com.midterm.libgmobile
 
 import android.os.Bundle
 import android.transition.TransitionInflater
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import com.midterm.libgmobile.adapter.RvBook
 import com.midterm.libgmobile.adapter.RvBookIF
 import com.midterm.libgmobile.model.BookModel

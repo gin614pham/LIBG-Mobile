@@ -1,8 +1,6 @@
 package com.midterm.libgmobile
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.midterm.libgmobile.databinding.ActivityMainBinding
@@ -23,10 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         getUserFromIntent()
         // check login
-        if(user.isLogin != true){
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
+        user.checkLogin(this)
         // set fragment home
         replaceFragment(homeFragment)
 
@@ -52,6 +47,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        user.checkLogin(this)
+    }
+
     // fun get user from intent
     private fun getUserFromIntent() {
         val intent = intent
@@ -61,9 +61,9 @@ class MainActivity : AppCompatActivity() {
         val name = intent.getStringExtra("name")
         val phone = intent.getStringExtra("phone")
         val gender = intent.getStringExtra("gender")
-        val avatar = intent.getIntExtra("avatar", 0)
+        val avatar = intent.getStringExtra("avatar")
         val isLogin = intent.getBooleanExtra("isLogin", false)
-        user = UserModel(id, email, password, name, phone, gender, avatar, isLogin)
+        user = UserModel(id, name, email, password, phone, gender, avatar, isLogin)
     }
 
     // fun put user to fragment account

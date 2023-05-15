@@ -15,7 +15,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnBackInfo"
                 style="@style/Widget.Material3.Button.IconButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/tvNameUserInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -96,7 +96,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/textView17"
+                android:id="@+id/tvIdUserInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -127,7 +127,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/tvGenderUserInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -139,6 +139,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cdChangePhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp">
@@ -158,7 +159,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/textView19"
+                android:id="@+id/tvPhoneUserInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -190,7 +191,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/tvEmailUserInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -202,22 +203,24 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cdChagePassword"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/textView20"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/doi_mat_khau"
             android:padding="4dp"
+            android:text="@string/doi_mat_khau"
             android:textSize="24sp"
             app:drawableEndCompat="@drawable/baseline_keyboard_arrow_right_24" />
     </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/btnLogout"
-        style="@style/loginButton"
+        style="@style/viewParent"
+        android:background="@drawable/login_button_bk"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/loginViewsMargin"
         android:text="@string/logout" />

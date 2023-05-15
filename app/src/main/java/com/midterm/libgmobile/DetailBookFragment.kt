@@ -2,25 +2,19 @@ package com.midterm.libgmobile
 
 import android.animation.LayoutTransition
 import android.annotation.SuppressLint
-import android.os.Build
 import android.os.Bundle
 import android.transition.AutoTransition
-import android.transition.Transition
 import android.transition.TransitionManager
-import android.view.SurfaceControl.Transaction
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ScrollView
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.transition.platform.MaterialContainerTransform
-import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import com.midterm.libgmobile.adapter.RvComment
 import com.midterm.libgmobile.model.BookModel
 import com.midterm.libgmobile.model.CommentModel
