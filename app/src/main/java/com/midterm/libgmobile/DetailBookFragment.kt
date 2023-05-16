@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.midterm.libgmobile.adapter.RvComment
 import com.midterm.libgmobile.model.BookModel
 import com.midterm.libgmobile.model.CommentModel
@@ -70,6 +71,9 @@ class DetailBookFragment : Fragment(R.layout.fragment_detail_book) {
         view.findViewById<Button>(R.id.btnBackDetail).setOnClickListener {
             activity?.onBackPressed()
         }
+        view.findViewById<FloatingActionButton>(R.id.fabFavorite).setOnClickListener {
+            createCallCardRequest()
+        }
         listComment = listOf(
             CommentModel("1", "1", "1", "this is comment 1", "user 1", R.drawable.baseline_account_circle_24),
             CommentModel("2", "2", "2", "this is comment 2", "user 2", 2),
@@ -84,6 +88,23 @@ class DetailBookFragment : Fragment(R.layout.fragment_detail_book) {
 
         // set adapter for recyclerView
         setOnClickComment()
+    }
+
+    private fun createCallCardRequest() {
+        val callCardRequestFragment = CallCardRequestFragment()
+        val bundle = Bundle()
+        bundle.putSerializable("book", book)
+        bundle.putSerializable("user", userModel)
+        callCardRequestFragment.arguments = bundle
+        val fragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.setCustomAnimations(
+            android.R.anim.slide_in_left,
+            android.R.anim.slide_out_right
+        )
+        fragmentTransaction.replace(R.id.frame_layout, callCardRequestFragment)
+        fragmentTransaction.addToBackStack(this.tag)
+        fragmentTransaction.commit()
     }
 
     private fun showDialog() {

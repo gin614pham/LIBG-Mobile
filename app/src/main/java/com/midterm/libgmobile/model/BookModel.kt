@@ -5,10 +5,11 @@ import android.net.Uri
 import android.widget.Toast
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.IgnoreExtraProperties
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storageMetadata
 import java.io.Serializable
-
+@IgnoreExtraProperties
 class BookModel(
     var id: String,
     var name: String,

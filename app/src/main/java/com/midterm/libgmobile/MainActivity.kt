@@ -1,5 +1,6 @@
 package com.midterm.libgmobile
 
+import android.content.ClipData.Item
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private var accountFragment = AccountFragment()
     private var searchFragment = SearchFragment()
     private var addBookFragment = AddBookFragment()
+    private var callCardFragment = CallCardFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,13 +43,17 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_search -> {
                     replaceFragment(searchFragment)
                 }
+                R.id.navigation_call_card -> {
+                    replaceFragment(callCardFragment)
+                }
                 R.id.navigation_account -> {
                     // put user to fragment account
                     // set fragment account
                     putUserToFragment(accountFragment, user)
                     replaceFragment(accountFragment)
-
                 }
+
+
             }
             true
         }
@@ -90,14 +96,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkRole() {
+        val menu = binding.bottomNavigationView.menu
+        val menuItem = menu.getItem(2)
         if (user.role == "Admin") {
             binding.fabAdminAddBook.visibility = View.VISIBLE
             binding.fabAdminAddBook.setOnClickListener {
                 replaceFragment(addBookFragment)
             }
+            // get item from menu
+            menuItem.isVisible = true
 //            findViewById<Button>(R.id.btnMenuDetail).visibility = View.VISIBLE
         } else {
             binding.fabAdminAddBook.visibility = View.GONE
+            menuItem.isVisible = false
 //            findViewById<Button>(R.id.btnMenuDetail).visibility = View.GONE
         }
 

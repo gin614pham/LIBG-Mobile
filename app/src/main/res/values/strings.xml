@@ -52,4 +52,17 @@
     <string name="delete">Xoá</string>
     <string name="are_you_sure_you_want_to_delete_this_book">"Bạn có chắc chắn muốn xoá Sách "</string>
     <string name="delete_book">Xoá sách</string>
+    <string name="call_card">Phiếu mượn sách</string>
+    <string name="call_card_all_number">Mã phiếu mượn</string>
+    <string name="book_id">Mã sách</string>
+    <string name="day_borrow">Ngày mượn</string>
+    <string name="due_day">Hạn trả</string>
+    <string name="cancel">Huỷ</string>
+    <string name="confirm">Xác nhận</string>
+    <string name="call_card_list">Phiếu mượn</string>
+    <string name="pending">Chờ duyệt</string>
+    <string name="unpaid">Trả sách</string>
+    <string name="all">Tất cả</string>
+    <string name="call_card_detail">Thông tin phiếu mượn</string>
+    <string name="confirm_book">Xác nhận trả sách</string>
 </resources>
