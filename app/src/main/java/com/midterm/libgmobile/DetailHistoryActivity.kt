@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import androidmads.library.qrgenearator.QRGContents
+import androidmads.library.qrgenearator.QRGEncoder
 import com.midterm.libgmobile.model.CallCardModel
 
 class DetailHistoryActivity : AppCompatActivity() {
@@ -32,5 +35,13 @@ class DetailHistoryActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnBackHistoryDetail).setOnClickListener() {
             finish()
         }
+
+        val qrgEncoder = QRGEncoder(callCardModel.id, null, QRGContents.Type.TEXT, 500)
+        qrgEncoder.colorBlack = getColor(R.color.white)
+        qrgEncoder.colorWhite = getColor(R.color.black)
+        val bitmap = qrgEncoder.bitmap
+        val ivQrCode = findViewById<ImageView>(R.id.ivQrCode)
+        ivQrCode.visibility = View.VISIBLE
+        ivQrCode.setImageBitmap(bitmap)
     }
 }

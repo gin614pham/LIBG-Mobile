@@ -55,4 +55,12 @@ class CallCardService {
             }
         })
     }
+
+    fun getById(id: String, callback: (CallCardModel) -> Unit){
+        database = FirebaseDatabase.getInstance().getReference("call_cards")
+        database.child(id).get().addOnSuccessListener {
+            val book = it.getValue(CallCardModel::class.java)
+            callback(book!!)
+        }
+    }
 }

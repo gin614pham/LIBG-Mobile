@@ -259,6 +259,14 @@
                 android:text="@string/confirm_book" />
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/ivQrCode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:visibility="gone"
+            app:srcCompat="@drawable/baseline_qr_code_scanner_24" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

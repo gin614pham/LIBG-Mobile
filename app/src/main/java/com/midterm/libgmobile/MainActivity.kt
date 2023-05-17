@@ -1,23 +1,29 @@
 package com.midterm.libgmobile
 
-import android.content.ClipData.Item
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.midterm.libgmobile.databinding.ActivityMainBinding
 import com.midterm.libgmobile.model.UserModel
+import com.midterm.libgmobile.service.CallCardService
+import io.github.g00fy2.quickie.QRResult
+import io.github.g00fy2.quickie.ScanQRCode
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var user = UserModel()
+    private var callCardService = CallCardService()
     private var homeFragment = HomeFragment()
     private var accountFragment = AccountFragment()
     private var searchFragment = SearchFragment()
     private var addBookFragment = AddBookFragment()
     private var callCardFragment = CallCardFragment()
+    private lateinit var scanQrCodeLauncher: ActivityResultLauncher<Nothing?>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +37,37 @@ class MainActivity : AppCompatActivity() {
         // set fragment home
         putUserToFragment(homeFragment, user)
         replaceFragment(homeFragment)
+
+        scanQrCodeLauncher = registerForActivityResult(
+            ScanQRCode()
+        ) { result ->
+            val text = when (result) {
+                is QRResult.QRSuccess -> result.content.rawValue
+                QRResult.QRUserCanceled -> "User canceled"
+                QRResult.QRMissingPermission -> "Missing permission"
+                is QRResult.QRError -> "${result.exception.javaClass.simpleName}: ${result.exception.localizedMessage}"
+            }
+            if (result is QRResult.QRSuccess){
+                callCardService.getById(text){
+                    val bundle = Bundle()
+                    bundle.putSerializable("callCard", it)
+                    val fragment = CallCardDetailFragment()
+                    fragment.arguments = bundle
+                    supportFragmentManager.beginTransaction()
+                        .setCustomAnimations(
+                            R.anim.slide_in_1,
+                            R.anim.slide_out_1,
+                            R.anim.slide_in_3,
+                            R.anim.slide_out_3
+                        )
+                        .replace(R.id.frame_layout, fragment)
+                        .addToBackStack(null)
+                        .commit()
+                }
+            } else {
+                Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+            }
+        }
 
         // button navigation view
         binding.bottomNavigationView.setOnItemSelectedListener {
@@ -110,13 +147,17 @@ class MainActivity : AppCompatActivity() {
             binding.fabAdminAddBook.setOnClickListener {
                 replaceFragment(addBookFragment)
             }
+            binding.fabQRCode.visibility = View.VISIBLE
+            binding.fabQRCode.setOnClickListener {
+                scanQrCodeLauncher.launch(null)
+            }
             // get item from menu
             menuItem.isVisible = true
-//            findViewById<Button>(R.id.btnMenuDetail).visibility = View.VISIBLE
         } else {
             binding.fabAdminAddBook.visibility = View.GONE
+            binding.fabQRCode.visibility = View.GONE
             menuItem.isVisible = false
-//            findViewById<Button>(R.id.btnMenuDetail).visibility = View.GONE
+
         }
 
     }
