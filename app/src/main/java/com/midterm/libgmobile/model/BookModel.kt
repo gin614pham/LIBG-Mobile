@@ -9,6 +9,8 @@ import com.google.firebase.database.IgnoreExtraProperties
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storageMetadata
 import java.io.Serializable
+import java.util.concurrent.SubmissionPublisher
+
 @IgnoreExtraProperties
 class BookModel(
     var id: String,
@@ -16,8 +18,8 @@ class BookModel(
     var author: String,
     var description: String,
     var image: String,
-    var price: String,
-    var rating: String,
+    var publisher: String,
+    var release: String,
 ) : Serializable {
     @Transient
     private var database: DatabaseReference? = null
@@ -31,7 +33,6 @@ class BookModel(
         if (this.id.isEmpty()) {
             this.id = database!!.push().key.toString()
         }
-        this.rating = this.rating.ifEmpty { "0" }
         database!!.child(this.id).setValue(this).addOnCompleteListener() {
             Toast.makeText(
                 activity,

@@ -3,8 +3,6 @@ package com.midterm.libgmobile
 import android.animation.LayoutTransition
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.transition.AutoTransition
-import android.transition.TransitionManager
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -63,8 +61,8 @@ class DetailBookFragment : Fragment(R.layout.fragment_detail_book) {
             view.findViewById<TextView>(R.id.etBookNameDetail).text = book?.name
             view.findViewById<EditText>(R.id.etBookAuthorDetail).setText(book?.author)
             view.findViewById<EditText>(R.id.etBookDescriptionDetail).setText(book?.description)
-            view.findViewById<EditText>(R.id.etBookPriceDetail).setText(book?.price)
-            view.findViewById<EditText>(R.id.etBookRatingDetail).setText(book?.rating)
+            view.findViewById<EditText>(R.id.etBookPublisherDetail).setText(book?.publisher)
+            view.findViewById<EditText>(R.id.etBookReleaseDetail).setText(book?.release)
             Glide.with(this).load(book?.image).into(view.findViewById(R.id.ivBookDetail))
         }
         // set OnClickListener for Button Back to do back to home
@@ -99,8 +97,10 @@ class DetailBookFragment : Fragment(R.layout.fragment_detail_book) {
         val fragmentManager = requireActivity().supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.setCustomAnimations(
-            android.R.anim.slide_in_left,
-            android.R.anim.slide_out_right
+            R.anim.slide_in_1,
+            R.anim.slide_out_1,
+            R.anim.slide_in_1,
+            R.anim.slide_out_1
         )
         fragmentTransaction.replace(R.id.frame_layout, callCardRequestFragment)
         fragmentTransaction.addToBackStack(this.tag)
@@ -120,8 +120,10 @@ class DetailBookFragment : Fragment(R.layout.fragment_detail_book) {
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.setCustomAnimations(
-                android.R.anim.slide_in_left,
-                android.R.anim.slide_out_right
+                R.anim.slide_in_1,
+                R.anim.slide_out_1,
+                R.anim.slide_in_1,
+                R.anim.slide_out_1
             )
             fragmentTransaction.replace(R.id.frame_layout, addBookFragment)
             fragmentTransaction.addToBackStack(this.tag)
@@ -153,9 +155,6 @@ class DetailBookFragment : Fragment(R.layout.fragment_detail_book) {
         // set OnClickListener for textView Comment
         cvComment?.setOnClickListener {
             // set Transition for CardView
-            val transition = AutoTransition()
-            transition.duration = 500
-            TransitionManager.beginDelayedTransition(cvLayout, transition)
             if(rvComment?.visibility == View.GONE && tvNoComment?.visibility == View.GONE){
                 if (listComment != null) {
                     rvComment?.visibility = View.VISIBLE
@@ -164,15 +163,11 @@ class DetailBookFragment : Fragment(R.layout.fragment_detail_book) {
                     rvComment?.layoutManager =
                         LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                     tvNoComment?.visibility = View.GONE
-                    scrollView!!.post {
-                        scrollView!!.fullScroll(View.FOCUS_DOWN)
-                    }
+
                 } else {
                     rvComment?.visibility = View.GONE
                     tvNoComment?.visibility = View.VISIBLE
-                    scrollView!!.post {
-                        scrollView!!.fullScroll(View.FOCUS_DOWN)
-                    }
+
                 }
             } else {
                 rvComment?.visibility = View.GONE

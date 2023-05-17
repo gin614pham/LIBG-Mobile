@@ -31,6 +31,7 @@ class CallCardRequestFragment : Fragment(R.layout.fragment_call_card_request) {
         view.findViewById<Button>(R.id.btnConfirm).setOnClickListener() {
             callCardModel.pushCallCard(requireActivity())
         }
+        view.findViewById<Button>(R.id.btnSuccess).visibility = View.GONE
     }
 
     private fun createCallCard(user: UserModel, book: BookModel){
@@ -39,10 +40,14 @@ class CallCardRequestFragment : Fragment(R.layout.fragment_call_card_request) {
         callCardModel.id_book = book.id
         callCardModel.name_book = book.name
         callCardModel.status = "Pending"
+        callCardModel.return_date = ""
         val dayFormat = SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault())
         callCardModel.date = dayFormat.format(System.currentTimeMillis())
         // set due date call card request to next 7 days
         callCardModel.due_date = dayFormat.format(System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000)
+        // formatted date day, month, year, hour, minute, second
+        val dayFormat2 = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", java.util.Locale.getDefault())
+        callCardModel.create_date = dayFormat2.format(System.currentTimeMillis())
     }
 
     private fun setData(callCardModel: CallCardModel, view: View) {
@@ -52,6 +57,7 @@ class CallCardRequestFragment : Fragment(R.layout.fragment_call_card_request) {
         view.findViewById<TextView>(R.id.tvNameBookCallCardRequest).text = bookModel.name
         view.findViewById<TextView>(R.id.tvDayCallCardRequest).text = callCardModel.date
         view.findViewById<TextView>(R.id.tvDueDayCallCardRequest).text = callCardModel.due_date
+        view.findViewById<TextView>(R.id.tvReturnDayCallCardRequest).text = callCardModel.return_date
 
     }
 

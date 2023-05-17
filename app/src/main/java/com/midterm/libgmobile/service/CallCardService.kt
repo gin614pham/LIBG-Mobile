@@ -34,20 +34,20 @@ class CallCardService {
         })
     }
 
-    fun getCallCardPending(callback: (List<CallCardModel>) -> Unit) {
+    fun getCallCardByID(id: String, callback: (List<CallCardModel>) -> Unit) {
         database = FirebaseDatabase.getInstance().getReference("call_cards")
-        database.orderByChild("status").equalTo("Pending")
-        database.addListenerForSingleValueEvent(object : ValueEventListener {
+        database.orderByChild("create_date").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val list = ArrayList<CallCardModel>()
-                if (dataSnapshot.exists()) {
-                    for (postSnapshot in dataSnapshot.children) {
-                        val book = postSnapshot.getValue(CallCardModel::class.java)
-                        list.add(book!!)
-                    }
-                    callback(list)
-                }
                 // Get Post object and use the values to update the UI
+                for (postSnapshot in dataSnapshot.children) {
+                    val book = postSnapshot.getValue(CallCardModel::class.java)
+                    if (book != null) {
+                        if (book.id_user.contains(id))
+                            list.add(book)
+                    }
+                }
+                callback(list)
             }
 
             override fun onCancelled(error: DatabaseError) {

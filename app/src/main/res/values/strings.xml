@@ -65,4 +65,8 @@
     <string name="all">Tất cả</string>
     <string name="call_card_detail">Thông tin phiếu mượn</string>
     <string name="confirm_book">Xác nhận trả sách</string>
+    <string name="day_return">Ngày trả</string>
+    <string name="history">Lịch sử mượn sách</string>
+    <string name="release">Năm xuất bản</string>
+    <string name="publisher">Nhà xuất bản</string>
 </resources>

@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
                     replaceFragment(homeFragment)
                 }
                 R.id.navigation_search -> {
+                    putUserToFragment(searchFragment, user)
                     replaceFragment(searchFragment)
                 }
                 R.id.navigation_call_card -> {
@@ -90,6 +91,12 @@ class MainActivity : AppCompatActivity() {
     private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
+            .setCustomAnimations(
+                R.anim.slide_in,
+                R.anim.slide_out,
+                R.anim.slide_in_2,
+                R.anim.slide_out_2
+            )
         fragmentTransaction.addToBackStack(homeFragment.tag)
         fragmentTransaction.replace(R.id.frame_layout, fragment)
         fragmentTransaction.commit()

@@ -51,21 +51,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     bundle.putSerializable("book", list[position])
                     bundle.putSerializable("user", user)
                     val fragment = DetailBookFragment()
-
-                    val changeTransfrom = TransitionInflater.from(requireContext())
-                        .inflateTransition(R.transition.change_image_transform)
-                    val explodeTransform = TransitionInflater.from(requireContext())
-                        .inflateTransition(android.R.transition.explode)
-                    // cài đặt hiệu ứng khi thoát khỏi fragment hiện tại
-                    fragment.sharedElementEnterTransition = changeTransfrom
-                    fragment.enterTransition = explodeTransform
-                    val imageView: ImageView = view.findViewById(R.id.ivBook)
                     fragment.arguments = bundle
                     requireActivity().supportFragmentManager.beginTransaction()
+                        .setCustomAnimations(
+                            R.anim.slide_in_1,
+                            R.anim.slide_out_1,
+                            R.anim.slide_in_2,
+                            R.anim.slide_out_2
+                        )
                         .replace(R.id.frame_layout, fragment)
-                        .addSharedElement(imageView,"book_detail")
-                        .addToBackStack("transaction")
-                        .addToBackStack(null)
+                        .addToBackStack(HomeFragment::class.java.name)
                         .commit()
                 }
             })

@@ -26,6 +26,7 @@ class CallCardDetailFragment : Fragment(R.layout.fragment_call_card_detail_pendi
         view.findViewById<TextView>(R.id.tvNameBookCallCardRequest).text = callCardModel.name_book
         view.findViewById<TextView>(R.id.tvDayCallCardRequest).text = callCardModel.date
         view.findViewById<TextView>(R.id.tvDueDayCallCardRequest).text = callCardModel.due_date
+        view.findViewById<TextView>(R.id.tvReturnDayCallCardRequest).text = callCardModel.return_date
 
         view.findViewById<Button>(R.id.btnBackCallCardetail).setOnClickListener() {
             requireActivity().onBackPressed()

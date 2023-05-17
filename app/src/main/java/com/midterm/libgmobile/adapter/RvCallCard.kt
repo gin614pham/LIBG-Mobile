@@ -32,7 +32,6 @@ class RvCallCard(private var list: List<CallCardModel>, private var listener: Rv
             holder.tvTime.text = list[position].date
             holder.tvNameBook.text = list[position].name_book
             holder.tvStatus.setCompoundDrawablesWithIntrinsicBounds(setStatus(list[position].status), 0, 0, 0)
-//            holder.tvStatus.setTextColor(getColor(list[position].status))
             holder.tvStatus.text = list[position].status
 
         }
@@ -49,15 +48,5 @@ class RvCallCard(private var list: List<CallCardModel>, private var listener: Rv
             else -> R.drawable.block_20px
         }
     }
-
-//    private fun getColor(status: String): Int {
-//        return when (status) {
-//            "Pending" -> R.color.pending
-//            "Unpaid" -> R.color.unpaid
-//            "Done" -> R.color.done
-//            else -> R.color.refuse
-//        }
-//    }
-
 
 }

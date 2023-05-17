@@ -53,10 +53,12 @@ class AddBookFragment : Fragment(R.layout.fragment_add_book) {
         }
 
         view.findViewById<Button>(R.id.btnAddBook).setOnClickListener(){
+            book = BookModel()
             book.name = view.findViewById<EditText>(R.id.etNameBookAdd).text.toString()
             book.author = view.findViewById<EditText>(R.id.etBookAuthorAdd).text.toString()
             book.description = view.findViewById<EditText>(R.id.etBookDescriptionAdd).text.toString()
-            book.price = view.findViewById<EditText>(R.id.etBookPriceAdd).text.toString()
+            book.release = view.findViewById<EditText>(R.id.etBookReleaseAdd).text.toString()
+            book.publisher = view.findViewById<EditText>(R.id.etBookPublisherAdd).text.toString()
             book.pushBook(requireActivity())
             if (isUpdateImage) {
                 book.pushImage(imageUri!!)
@@ -77,7 +79,8 @@ class AddBookFragment : Fragment(R.layout.fragment_add_book) {
         view.findViewById<EditText>(R.id.etNameBookAdd).text.clear()
         view.findViewById<EditText>(R.id.etBookAuthorAdd).text.clear()
         view.findViewById<EditText>(R.id.etBookDescriptionAdd).text.clear()
-        view.findViewById<EditText>(R.id.etBookPriceAdd).text.clear()
+        view.findViewById<EditText>(R.id.etBookReleaseAdd).text.clear()
+        view.findViewById<EditText>(R.id.etBookPublisherAdd).text.clear()
         view.findViewById<ImageView>(R.id.ivBookAdd).visibility = View.GONE
     }
 
@@ -86,7 +89,8 @@ class AddBookFragment : Fragment(R.layout.fragment_add_book) {
             view.findViewById<EditText>(R.id.etNameBookAdd).setText(book.name)
             view.findViewById<EditText>(R.id.etBookAuthorAdd).setText(book.author)
             view.findViewById<EditText>(R.id.etBookDescriptionAdd).setText(book.description)
-            view.findViewById<EditText>(R.id.etBookPriceAdd).setText(book.price)
+            view.findViewById<EditText>(R.id.etBookReleaseAdd).setText(book.release)
+            view.findViewById<EditText>(R.id.etBookPublisherAdd).setText(book.publisher)
             Glide.with(this).load(book.image).into(view.findViewById(R.id.ivBookAdd))
             view.findViewById<ImageView>(R.id.ivBookAdd).visibility = View.VISIBLE
             imageUri = Uri.parse(book.image)

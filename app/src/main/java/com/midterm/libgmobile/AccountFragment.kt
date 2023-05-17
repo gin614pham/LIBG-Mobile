@@ -40,5 +40,11 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
             intent.putExtra("user", user)
             startActivity(intent)
         }
+        val btnHistory: CardView = view?.findViewById(R.id.btnHistory)!!
+        btnHistory.setOnClickListener {
+            val intent = Intent(activity, HistoryActivity::class.java)
+            intent.putExtra("user", user)
+            startActivity(intent)
+        }
     }
 }

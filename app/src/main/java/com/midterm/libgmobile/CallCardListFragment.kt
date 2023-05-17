@@ -1,6 +1,7 @@
 package com.midterm.libgmobile
 
 import android.os.Bundle
+import android.text.TextUtils.replace
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,6 +32,12 @@ class CallCardListFragment(private val status: String) : Fragment(R.layout.fragm
                     val fragment = CallCardDetailFragment()
                     fragment.arguments = bundle
                     requireActivity().supportFragmentManager.beginTransaction()
+                        .setCustomAnimations(
+                            R.anim.slide_in_1,
+                            R.anim.slide_out_1,
+                            R.anim.slide_in_3,
+                            R.anim.slide_out_3
+                        )
                         .replace(R.id.frame_layout, fragment)
                         .addToBackStack(null)
                         .commit()
