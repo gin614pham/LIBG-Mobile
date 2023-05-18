@@ -44,6 +44,10 @@ class BookService {
                         book!!.name.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))
                         ||
                         book.author.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))
+                        ||
+                        book.publisher.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))
+                        ||
+                        book.release.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))
                     ) {
                         list.add(book)
                     }
